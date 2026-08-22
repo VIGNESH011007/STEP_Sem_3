@@ -1,0 +1,29 @@
+public class Employee {
+    private int id;
+    private String name;
+    private double salary;
+
+    public Employee(int id, String name, double salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = (salary >= 0) ? salary : 0.0;
+    }
+
+    public void applyRaise(double percentage) {
+        if (percentage > 0) {
+            salary += salary * (percentage / 100.0);
+        }
+    }
+
+    public void displayEmployeeDetails() {
+        System.out.println("ID     : " + id);
+        System.out.println("Name   : " + name);
+        System.out.println("Salary : $" + salary);
+    }
+
+    public static void main(String[] args) {
+        Employee emp = new Employee(101, "Alice Smith", 60000.0);
+        emp.applyRaise(10.0);
+        emp.displayEmployeeDetails();
+    }
+}
