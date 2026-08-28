@@ -1,36 +1,31 @@
-public class BankAccount {
-    private String accountNumber;
-    private String accountHolderName;
-    private double balance;
+class PlacementRecord {
+    String studentName;
+    String company;
+    double packageLpa;
 
-    public BankAccount(String accountNumber, String accountHolderName, double initialBalance) {
-        this.accountNumber = accountNumber;
-        this.accountHolderName = accountHolderName;
-        this.balance = (initialBalance >= 0) ? initialBalance : 0.0;
+    // Constructor to initialize all fields
+    public PlacementRecord(String studentName, String company, double packageLpa) {
+        this.studentName = studentName;
+        this.company = company;
+        this.packageLpa = packageLpa;
     }
 
-    public void deposit(double amount) {
-        if (amount > 0) {
-            balance += amount;
-        }
+    // Method to print formatted output
+    public void printRecord() {
+        System.out.printf("%s -> %s @ %.1f LPA%n", studentName, company, packageLpa);
     }
+}
 
-    public void withdraw(double amount) {
-        if (amount > 0 && amount <= balance) {
-            balance -= amount;
-        }
-    }
-
-    public void displayAccountDetails() {
-        System.out.println("Account Number : " + accountNumber);
-        System.out.println("Account Holder : " + accountHolderName);
-        System.out.println("Balance        : $" + balance);
-    }
-
+public class M1Main {
     public static void main(String[] args) {
-        BankAccount account = new BankAccount("ACC10023", "Jane Doe", 1000.0);
-        account.deposit(500.0);
-        account.withdraw(200.0);
-        account.displayAccountDetails();
+        PlacementRecord[] records = {
+            new PlacementRecord("Ravi", "TCS", 4.5),
+            new PlacementRecord("Anitha", "Zoho", 6.2),
+            new PlacementRecord("Karthik", "Infosys", 4.0)
+        };
+
+        for (PlacementRecord record : records) {
+            record.printRecord();
+        }
     }
 }
