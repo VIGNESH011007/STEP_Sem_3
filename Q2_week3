@@ -1,29 +1,46 @@
-public class Employee {
-    private int id;
-    private String name;
-    private double salary;
+class MessWallet {
+    private double balance;
 
-    public Employee(int id, String name, double salary) {
-        this.id = id;
-        this.name = name;
-        this.salary = (salary >= 0) ? salary : 0.0;
-    }
-
-    public void applyRaise(double percentage) {
-        if (percentage > 0) {
-            salary += salary * (percentage / 100.0);
+    // Constructor with negative balance validation
+    public MessWallet(double openingBalance) {
+        if (openingBalance < 0) {
+            System.out.println("Warning: Opening balance cannot be negative. Setting balance to 0.0");
+            this.balance = 0.0;
+        } else {
+            this.balance = openingBalance;
         }
     }
 
-    public void displayEmployeeDetails() {
-        System.out.println("ID     : " + id);
-        System.out.println("Name   : " + name);
-        System.out.println("Salary : $" + salary);
+    // Top-up method
+    public void topUp(double amount) {
+        if (amount <= 0) {
+            System.out.println("Top-up rejected: Amount must be greater than 0");
+        } else {
+            balance += amount;
+            System.out.println("Balance after top-up: " + balance);
+        }
     }
 
+    // Deduct method with balance check
+    public void deduct(double amount) {
+        if (amount > balance) {
+            System.out.println("Deduct rejected: insufficient balance");
+        } else {
+            balance -= amount;
+        }
+    }
+
+    // Read-only getter
+    public double getBalance() {
+        return balance;
+    }
+}
+
+public class M2Main {
     public static void main(String[] args) {
-        Employee emp = new Employee(101, "Alice Smith", 60000.0);
-        emp.applyRaise(10.0);
-        emp.displayEmployeeDetails();
+        MessWallet wallet = new MessWallet(500);
+        wallet.topUp(200);
+        wallet.deduct(1000);
+        System.out.println("Final balance: " + wallet.getBalance());
     }
 }
