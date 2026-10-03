@@ -1,0 +1,32 @@
+package Week7_Assignment;
+
+public class Assignment3 {
+    abstract class GardenTool {
+        public GardenTool() {
+        }
+
+        public abstract String use();
+    }
+
+    class CuttingTool extends GardenTool {
+        public CuttingTool() {
+            super();
+        }
+
+        @Override
+        public String use() {
+            return "Using the tool in the garden, blade sharpened first";
+        }
+    }
+
+    class Pruner extends CuttingTool {
+        public Pruner() {
+            super();
+        }
+
+        @Override
+        public String use() {
+            return super.use() + ", then trimming branches precisely";
+        }
+    }
+}
